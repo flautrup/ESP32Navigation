@@ -1,0 +1,27 @@
+# Navigation System Tasks
+
+- [x] Phase 1: Planning and Architecture Approval
+  - [x] Review implementation plan with user.
+  - [x] Decide on BLE vs WiFi and iOS handling strategy (BLE chosen).
+- [x] Phase 2: Hardware & UI Prototyping (ESP32)
+  - [x] Setup GC9A01 display driver.
+  - [x] Setup CST816S touch controller.
+  - [x] Initialize LVGL with monochrome theme and smooth typography.
+  - [x] Create Configuration UI screens (settings, pairs, themes).
+  - [x] Create mock Navigation UI screens (connecting, navigating, waiting).
+- [x] Phase 3: Communication Protocol Implementation (ESP32)
+  - [x] Implement BLE Server for Android companion app.
+  - [x] Implement BLE ANCS Client for iOS parsing.
+  - [x] Integrate BLE payload parser to update LVGL UI in real-time.
+- [x] Phase 4: Android Companion App Development
+  - [x] Create basic Android app structure.
+  - [x] Implement NotificationListenerService for Google Maps.
+  - [x] Implement BLE client to send parsed data to ESP32.
+- [x] Phase 5: Testing and Refinement
+  - [x] End-to-end testing with live Google Maps payloads.
+  - [x] Optimize UI refresh rates and animations.
+- [x] Phase 6: UI Enhancements
+  - [x] Extract maneuvers/icons from Android notification.
+  - [x] Transmit maneuver ID over BLE to ESP32.
+  - [x] Render high-contrast LVGL symbols for maneuvers.
+  - [x] Maximize font sizes for readability while riding.

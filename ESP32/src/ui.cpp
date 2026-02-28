@@ -1,4 +1,9 @@
 #include "ui.h"
+#include <lvgl.h>
+
+LV_FONT_DECLARE(lv_font_montserrat_24);
+LV_FONT_DECLARE(lv_font_montserrat_32);
+LV_FONT_DECLARE(lv_font_montserrat_48);
 
 // Screens
 static lv_obj_t *scr_config;
@@ -47,16 +52,22 @@ void ui_init() {
   lv_obj_set_style_bg_color(scr_nav, lv_color_black(), 0);
 
   lbl_maneuver = lv_label_create(scr_nav);
-  lv_label_set_text(lbl_maneuver, "^"); // Placeholder for an arrow or icon
+  lv_obj_set_style_text_font(lbl_maneuver, &lv_font_montserrat_48,
+                             0); // Massive icon font
+  lv_label_set_text(lbl_maneuver, LV_SYMBOL_UP);
   lv_obj_set_style_text_color(lbl_maneuver, lv_color_white(), 0);
-  lv_obj_align(lbl_maneuver, LV_ALIGN_CENTER, 0, -40);
+  lv_obj_align(lbl_maneuver, LV_ALIGN_CENTER, 0, -60);
 
   lbl_distance = lv_label_create(scr_nav);
-  lv_label_set_text(lbl_distance, "0 m");
+  lv_obj_set_style_text_font(lbl_distance, &lv_font_montserrat_32,
+                             0); // Large distance font
+  lv_label_set_text(lbl_distance, "---");
   lv_obj_set_style_text_color(lbl_distance, lv_color_white(), 0);
-  lv_obj_align(lbl_distance, LV_ALIGN_CENTER, 0, 10);
+  lv_obj_align(lbl_distance, LV_ALIGN_CENTER, 0, 0);
 
   lbl_street = lv_label_create(scr_nav);
+  lv_obj_set_style_text_font(lbl_street, &lv_font_montserrat_24,
+                             0); // Readable street font
   lv_label_set_text(lbl_street, "Waiting for route...");
   lv_obj_set_style_text_color(lbl_street, lv_color_white(), 0);
   lv_obj_align(lbl_street, LV_ALIGN_CENTER, 0, 50);
@@ -73,9 +84,45 @@ void ui_show_connecting() {
   lv_scr_load_anim(scr_connecting, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, false);
 }
 
-void ui_show_navigation(const char *maneuver, const char *distance,
+void ui_show_navigation(int maneuverId, const char *distance,
                         const char *street) {
-  lv_label_set_text(lbl_maneuver, maneuver);
+  const char *symbol = LV_SYMBOL_UP; // Default straight
+
+  switch (maneuverId) {
+  case 1:
+    symbol = LV_SYMBOL_LEFT;
+    break;
+  case 2:
+    symbol = LV_SYMBOL_RIGHT;
+    break;
+  case 3:
+    symbol = LV_SYMBOL_NEW_LINE LV_SYMBOL_LEFT;
+    break; // Bear Left (Hack: can just use left if no specific diag)
+  case 4:
+    symbol = LV_SYMBOL_NEW_LINE LV_SYMBOL_RIGHT;
+    break; // Bear Right
+  case 5:
+    symbol = LV_SYMBOL_REFRESH;
+    break; // U-Turn
+  case 6:
+    symbol = LV_SYMBOL_LOOP;
+    break; // Roundabout
+  case 7:
+    symbol = LV_SYMBOL_HOME;
+    break; // Arrive
+  default:
+    symbol = LV_SYMBOL_UP;
+    break; // Straight
+  }
+
+  // Fallback for bear left/right if multiline symbols look bad, just use
+  // standard vectors
+  if (maneuverId == 3)
+    symbol = LV_SYMBOL_LEFT;
+  if (maneuverId == 4)
+    symbol = LV_SYMBOL_RIGHT;
+
+  lv_label_set_text(lbl_maneuver, symbol);
   lv_label_set_text(lbl_distance, distance);
   lv_label_set_text(lbl_street, street);
 

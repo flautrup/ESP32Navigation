@@ -45,14 +45,15 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
 
         // Debug: Send mock payload to ESP32 without needing Google Maps
         btnMockData.setOnClickListener(v -> {
+            int mockId = 2; // Right arrow
             String mockInstruction = "Turn right";
             String mockStreet = "Test Avenue";
             String mockDistance = "300m";
 
-            appendLog("MOCK -> " + mockInstruction + " | " + mockStreet + " | " + mockDistance);
+            appendLog("MOCK -> [" + mockId + "] " + mockInstruction + " | " + mockStreet + " | " + mockDistance);
 
             if (bleManager != null) {
-                bleManager.sendNavUpdate(mockInstruction, mockStreet, mockDistance);
+                bleManager.sendNavUpdate(mockId, mockInstruction, mockStreet, mockDistance);
             } else {
                 Toast.makeText(this, "BLE Manager not initialized.", Toast.LENGTH_SHORT).show();
             }
@@ -75,14 +76,15 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
     private BroadcastReceiver navUpdateReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
+            int maneuverId = intent.getIntExtra("maneuver_id", 0);
             String instruction = intent.getStringExtra("instruction");
             String street = intent.getStringExtra("street");
             String distance = intent.getStringExtra("distance");
 
-            appendLog("LIVE: [" + instruction + "] " + street + " - " + distance);
+            appendLog("LIVE: [" + maneuverId + "] " + instruction + " - " + street + " - " + distance);
 
             if (bleManager != null) {
-                bleManager.sendNavUpdate(instruction, street, distance);
+                bleManager.sendNavUpdate(maneuverId, instruction, street, distance);
             }
         }
     };

@@ -6,6 +6,7 @@
 
 // Thread-safe data exchange between NimBLE task and LVGL task
 static std::mutex nav_mutex;
+static int g_nav_maneuver_id = 0;
 static String g_nav_instruction = "";
 static String g_nav_street = "";
 static String g_nav_distance = "";
@@ -32,7 +33,7 @@ class MyServerCallbacks : public NimBLEServerCallbacks {
     NimBLEDevice::startSecurity(desc->conn_handle);
 
     // Inform UI that we are connected, waiting for a route
-    ui_show_navigation("-", "-", "Connected. Waiting for route...");
+    ui_show_navigation(0, "-", "Connected. Waiting for route...");
   }
 
   void onDisconnect(NimBLEServer *pServer, ble_gap_conn_desc *desc) {
@@ -54,18 +55,21 @@ class AndroidNavCallbacks : public NimBLECharacteristicCallbacks {
                   rxValue.c_str());
 
     if (rxValue.length() > 0) {
-      // Incoming format: instruction,street,distance
+      // Incoming format: maneuverId,instruction,street,distance
       String payload = String(rxValue.c_str());
 
       int firstComma = payload.indexOf(',');
       int secondComma = payload.indexOf(',', firstComma + 1);
+      int thirdComma = payload.indexOf(',', secondComma + 1);
 
-      if (firstComma != -1 && secondComma != -1) {
-        String instruction = payload.substring(0, firstComma);
-        String street = payload.substring(firstComma + 1, secondComma);
-        String distance = payload.substring(secondComma + 1);
+      if (firstComma != -1 && secondComma != -1 && thirdComma != -1) {
+        int maneuverId = payload.substring(0, firstComma).toInt();
+        String instruction = payload.substring(firstComma + 1, secondComma);
+        String street = payload.substring(secondComma + 1, thirdComma);
+        String distance = payload.substring(thirdComma + 1);
 
         std::lock_guard<std::mutex> lock(nav_mutex);
+        g_nav_maneuver_id = maneuverId;
         g_nav_instruction = instruction;
         g_nav_street = street;
         g_nav_distance = distance;
@@ -73,6 +77,7 @@ class AndroidNavCallbacks : public NimBLECharacteristicCallbacks {
       } else {
         // Fallback if parsing fails
         std::lock_guard<std::mutex> lock(nav_mutex);
+        g_nav_maneuver_id = 0;
         g_nav_instruction = "Nav";
         g_nav_street = "-";
         g_nav_distance = rxValue.c_str();
@@ -86,7 +91,7 @@ void ble_process_nav_data() {
   std::lock_guard<std::mutex> lock(nav_mutex);
   if (g_new_nav_data) {
     g_new_nav_data = false;
-    ui_show_navigation(g_nav_instruction.c_str(), g_nav_distance.c_str(),
+    ui_show_navigation(g_nav_maneuver_id, g_nav_distance.c_str(),
                        g_nav_street.c_str());
   }
 }
