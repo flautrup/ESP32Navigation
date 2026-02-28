@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ESP32 Nav</string>
+    <string name="status_disconnected">Disconnected</string>
+    <string name="status_connected">Connected to ESP32</string>
+    <string name="scan_button">Scan for ESP32</string>
+    <string name="permission_required">Notification permissions required to read directions</string>
+</resources>
