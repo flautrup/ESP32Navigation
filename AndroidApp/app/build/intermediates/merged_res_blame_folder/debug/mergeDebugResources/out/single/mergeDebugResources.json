@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "com.navigation.esp32.app-debug-28:/layout_activity_main.xml.flat",
+        "source": "com.navigation.esp32.app-main-30:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/fredrik/.gradle/daemon/8.13/com.navigation.esp32.app-debug-28:/layout_activity_main.xml.flat",
+        "source": "/home/fredrik/.gradle/daemon/8.13/com.navigation.esp32.app-main-30:/layout/activity_main.xml"
+    }
+]

@@ -1,0 +1,269 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:2:1-39:12
+MERGED from [com.google.android.material:material:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/115386b7d7836f8e6ccc62e68c6b8522/transformed/material-1.9.0/AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/fredrik/.gradle/caches/8.13/transforms/b0c78515e68f72c507c2b2ff3cfb3f57/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/97c662985473bd815d945e6f108af44a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/52accc19cb6cac4825b092776e2fd397/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c7b20d6fc9c98000819451a8289dea1b/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /home/fredrik/.gradle/caches/8.13/transforms/8b64f0ec0035d06ea5372a84d493b15c/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.6.0] /home/fredrik/.gradle/caches/8.13/transforms/e89837cfc7e76f2a9243b3c6fa171362/transformed/jetified-activity-1.6.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/d712a7ca30030a844a18b9ca1687d388/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/c843c2791ba021d9a0b76baca785dd21/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/95430b183ff0ae61ad2d7bd688ecd211/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/dcf1eb6589ac07caa95ad478b8d96e9a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/1d647717e64f3fe1f513dbdd63d02a34/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/badb36792244cb2fa039c7d528b8d4ef/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/ff46bf340d58465763984b8635e4dc06/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c8ec1819fd89957967c85560f1630f08/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3adba427b2d81cbd8b8abca20dc819de/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/60d0032a4331a50f2bc2df6caad3f57f/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/74acf73c77e1887dfdefe1048d201c7e/transformed/jetified-lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/5f96411e4154e520fbbf9c4feb502e1b/transformed/jetified-core-ktx-1.9.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/1ca56e8df668f74a9bc142a6e03cc78a/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/01cf1e10b92eca9d63dc2a6d06346ac3/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/8f9bb2c2ff2185969f25068bb02f792b/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/0df0728b6fca7db1b9a426f80e4cb5bf/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/b227c7332db5f10b576a35b570c4af45/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/eae912738d64c68c8b211e9715aa2ad0/transformed/jetified-savedstate-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/2137da4e14422810cd268525c8011009/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7dc3162a2a6949b963845ea07f129a30/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/1c624c3e8b08266cda9e4d02fbc641c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7b50dc0e290042ec44be2cb6c836b5c0/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/ad16bade5e0d42eede8f1f37dc20f304/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/fredrik/.gradle/caches/8.13/transforms/74846595f03aaba7740d1df4f4d9c978/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/b0af25193816ac8c501a011b39320aba/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/f2cc96d4caedc9c240e592c0d31730b9/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3cf33606b1dc7c62f9529b3105d37093/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/bd39651857320abaf5d8f50f3e8fd5d9/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/fredrik/.gradle/caches/8.13/transforms/5dc97683246f78d3b5f62a43de4a9d26/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:17:1-22:12
+	package
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:5:5-68
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:5:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:6:5-74
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:6:22-71
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:7:5-76
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:7:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:8:5-73
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:8:22-70
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:11:5-79
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:11:22-76
+application
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:13:5-38:19
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:13:5-38:19
+MERGED from [com.google.android.material:material:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/115386b7d7836f8e6ccc62e68c6b8522/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/115386b7d7836f8e6ccc62e68c6b8522/transformed/material-1.9.0/AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/fredrik/.gradle/caches/8.13/transforms/b0c78515e68f72c507c2b2ff3cfb3f57/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/fredrik/.gradle/caches/8.13/transforms/b0c78515e68f72c507c2b2ff3cfb3f57/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/1c624c3e8b08266cda9e4d02fbc641c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/1c624c3e8b08266cda9e4d02fbc641c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+	android:extractNativeLibs
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:15:9-41
+	android:allowBackup
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:17:9-46
+activity#com.navigation.esp32.MainActivity
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:19:9-26:20
+	android:exported
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:21:13-36
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:20:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:22:13-25:29
+action#android.intent.action.MAIN
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:23:17-69
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:23:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:24:17-77
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:24:27-74
+service#com.navigation.esp32.NavNotificationService
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:29:9-36:19
+	android:label
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:30:13-58
+	android:exported
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:32:13-36
+	android:permission
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:31:13-87
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:29:18-56
+intent-filter#action:name:android.service.notification.NotificationListenerService
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:33:13-35:29
+action#android.service.notification.NotificationListenerService
+ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:34:17-99
+	android:name
+		ADDED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:34:25-96
+uses-sdk
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/115386b7d7836f8e6ccc62e68c6b8522/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/115386b7d7836f8e6ccc62e68c6b8522/transformed/material-1.9.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/fredrik/.gradle/caches/8.13/transforms/b0c78515e68f72c507c2b2ff3cfb3f57/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/fredrik/.gradle/caches/8.13/transforms/b0c78515e68f72c507c2b2ff3cfb3f57/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/97c662985473bd815d945e6f108af44a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/97c662985473bd815d945e6f108af44a/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/52accc19cb6cac4825b092776e2fd397/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /home/fredrik/.gradle/caches/8.13/transforms/52accc19cb6cac4825b092776e2fd397/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c7b20d6fc9c98000819451a8289dea1b/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c7b20d6fc9c98000819451a8289dea1b/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/fredrik/.gradle/caches/8.13/transforms/8b64f0ec0035d06ea5372a84d493b15c/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /home/fredrik/.gradle/caches/8.13/transforms/8b64f0ec0035d06ea5372a84d493b15c/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.6.0] /home/fredrik/.gradle/caches/8.13/transforms/e89837cfc7e76f2a9243b3c6fa171362/transformed/jetified-activity-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] /home/fredrik/.gradle/caches/8.13/transforms/e89837cfc7e76f2a9243b3c6fa171362/transformed/jetified-activity-1.6.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/d712a7ca30030a844a18b9ca1687d388/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/d712a7ca30030a844a18b9ca1687d388/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/c843c2791ba021d9a0b76baca785dd21/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/c843c2791ba021d9a0b76baca785dd21/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/95430b183ff0ae61ad2d7bd688ecd211/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/95430b183ff0ae61ad2d7bd688ecd211/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/dcf1eb6589ac07caa95ad478b8d96e9a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/dcf1eb6589ac07caa95ad478b8d96e9a/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/1d647717e64f3fe1f513dbdd63d02a34/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/1d647717e64f3fe1f513dbdd63d02a34/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/badb36792244cb2fa039c7d528b8d4ef/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/badb36792244cb2fa039c7d528b8d4ef/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/ff46bf340d58465763984b8635e4dc06/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/ff46bf340d58465763984b8635e4dc06/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c8ec1819fd89957967c85560f1630f08/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/c8ec1819fd89957967c85560f1630f08/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3adba427b2d81cbd8b8abca20dc819de/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3adba427b2d81cbd8b8abca20dc819de/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/60d0032a4331a50f2bc2df6caad3f57f/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/60d0032a4331a50f2bc2df6caad3f57f/transformed/lifecycle-viewmodel-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/74acf73c77e1887dfdefe1048d201c7e/transformed/jetified-lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/74acf73c77e1887dfdefe1048d201c7e/transformed/jetified-lifecycle-viewmodel-savedstate-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/5f96411e4154e520fbbf9c4feb502e1b/transformed/jetified-core-ktx-1.9.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/5f96411e4154e520fbbf9c4feb502e1b/transformed/jetified-core-ktx-1.9.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/1ca56e8df668f74a9bc142a6e03cc78a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/1ca56e8df668f74a9bc142a6e03cc78a/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/01cf1e10b92eca9d63dc2a6d06346ac3/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/01cf1e10b92eca9d63dc2a6d06346ac3/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/8f9bb2c2ff2185969f25068bb02f792b/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /home/fredrik/.gradle/caches/8.13/transforms/8f9bb2c2ff2185969f25068bb02f792b/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/0df0728b6fca7db1b9a426f80e4cb5bf/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/0df0728b6fca7db1b9a426f80e4cb5bf/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/b227c7332db5f10b576a35b570c4af45/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/b227c7332db5f10b576a35b570c4af45/transformed/lifecycle-runtime-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/eae912738d64c68c8b211e9715aa2ad0/transformed/jetified-savedstate-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/eae912738d64c68c8b211e9715aa2ad0/transformed/jetified-savedstate-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/2137da4e14422810cd268525c8011009/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/2137da4e14422810cd268525c8011009/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7dc3162a2a6949b963845ea07f129a30/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7dc3162a2a6949b963845ea07f129a30/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/1c624c3e8b08266cda9e4d02fbc641c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/1c624c3e8b08266cda9e4d02fbc641c6/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7b50dc0e290042ec44be2cb6c836b5c0/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/fredrik/.gradle/caches/8.13/transforms/7b50dc0e290042ec44be2cb6c836b5c0/transformed/lifecycle-livedata-2.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/ad16bade5e0d42eede8f1f37dc20f304/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] /home/fredrik/.gradle/caches/8.13/transforms/ad16bade5e0d42eede8f1f37dc20f304/transformed/lifecycle-livedata-core-2.5.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/fredrik/.gradle/caches/8.13/transforms/74846595f03aaba7740d1df4f4d9c978/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/fredrik/.gradle/caches/8.13/transforms/74846595f03aaba7740d1df4f4d9c978/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/b0af25193816ac8c501a011b39320aba/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/b0af25193816ac8c501a011b39320aba/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/f2cc96d4caedc9c240e592c0d31730b9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/f2cc96d4caedc9c240e592c0d31730b9/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3cf33606b1dc7c62f9529b3105d37093/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/3cf33606b1dc7c62f9529b3105d37093/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/bd39651857320abaf5d8f50f3e8fd5d9/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /home/fredrik/.gradle/caches/8.13/transforms/bd39651857320abaf5d8f50f3e8fd5d9/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/fredrik/.gradle/caches/8.13/transforms/5dc97683246f78d3b5f62a43de4a9d26/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] /home/fredrik/.gradle/caches/8.13/transforms/5dc97683246f78d3b5f62a43de4a9d26/transformed/jetified-annotation-experimental-1.3.0/AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/fredrik/.gradle/caches/8.13/transforms/b7225bff00ce7c96ba57986daae22b3c/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/8.13/transforms/70bb9e4b1b4cb8fcb3e2a6f51dcd2fc7/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+permission#com.navigation.esp32.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+uses-permission#com.navigation.esp32.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/8.13/transforms/2dcbccac06d1e840ec5321997e56e300/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/8.13/transforms/cb77ae94aec93e2e4e5d836d0a010803/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78

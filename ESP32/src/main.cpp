@@ -27,7 +27,7 @@ public:
       cfg.dma_channel = SPI_DMA_CH_AUTO;
       cfg.pin_sclk = 6;
       cfg.pin_mosi = 7;
-      cfg.pin_miso = -1;
+      cfg.pin_miso = 8; // Was -1, caused spiAttachMISO exception with BLE
       cfg.pin_dc = 2;
       _bus_instance.config(cfg);
       _panel_instance.setBus(&_bus_instance);
@@ -132,6 +132,7 @@ void setup() {
 }
 
 void loop() {
+  ble_process_nav_data();
   lv_timer_handler();
   delay(5);
 }

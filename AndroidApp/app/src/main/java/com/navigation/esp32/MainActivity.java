@@ -19,7 +19,9 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity implements BleClientManager.BleListener {
 
     private TextView tvStatus;
+    private TextView tvLogs;
     private Button btnConnect;
+    private Button btnMockData;
     private BleClientManager bleManager;
 
     @Override
@@ -28,7 +30,9 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
         setContentView(R.layout.activity_main);
 
         tvStatus = findViewById(R.id.tvStatus);
+        tvLogs = findViewById(R.id.tvLogs);
         btnConnect = findViewById(R.id.btnConnect);
+        btnMockData = findViewById(R.id.btnMockData);
         bleManager = new BleClientManager(this, this);
 
         checkPermissions();
@@ -39,9 +43,33 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
             bleManager.startScan();
         });
 
+        // Debug: Send mock payload to ESP32 without needing Google Maps
+        btnMockData.setOnClickListener(v -> {
+            String mockInstruction = "Turn right";
+            String mockStreet = "Test Avenue";
+            String mockDistance = "300m";
+
+            appendLog("MOCK -> " + mockInstruction + " | " + mockStreet + " | " + mockDistance);
+
+            if (bleManager != null) {
+                bleManager.sendNavUpdate(mockInstruction, mockStreet, mockDistance);
+            } else {
+                Toast.makeText(this, "BLE Manager not initialized.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         // Register receiver for Navigation Updates
         IntentFilter filter = new IntentFilter(NavNotificationService.ACTION_NAV_UPDATE);
         registerReceiver(navUpdateReceiver, filter);
+    }
+
+    private void appendLog(String message) {
+        String currentText = tvLogs.getText().toString();
+        // Keep log from growing infinitely
+        if (currentText.length() > 2000) {
+            currentText = currentText.substring(currentText.length() - 1000);
+        }
+        tvLogs.setText(currentText + "\n" + message);
     }
 
     private BroadcastReceiver navUpdateReceiver = new BroadcastReceiver() {
@@ -50,7 +78,9 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
             String instruction = intent.getStringExtra("instruction");
             String street = intent.getStringExtra("street");
             String distance = intent.getStringExtra("distance");
-            
+
+            appendLog("LIVE: [" + instruction + "] " + street + " - " + distance);
+
             if (bleManager != null) {
                 bleManager.sendNavUpdate(instruction, street, distance);
             }
@@ -73,16 +103,23 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
     }
 
     @Override
+    public void onLog(String message) {
+        runOnUiThread(() -> appendLog("BLE: " + message));
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         unregisterReceiver(navUpdateReceiver);
-        if (bleManager != null) bleManager.disconnect();
+        if (bleManager != null)
+            bleManager.disconnect();
     }
 
     private void checkPermissions() {
         // Request Bluetooth permissions
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {
                     Manifest.permission.BLUETOOTH_SCAN,
                     Manifest.permission.BLUETOOTH_CONNECT,
                     Manifest.permission.ACCESS_FINE_LOCATION

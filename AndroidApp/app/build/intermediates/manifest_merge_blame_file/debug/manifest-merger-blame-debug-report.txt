@@ -1,0 +1,115 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.navigation.esp32"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="33" />
+10
+11    <!-- Bluetooth Permissions -->
+12    <uses-permission android:name="android.permission.BLUETOOTH" />
+12-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:5:5-68
+12-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:5:22-65
+13    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+13-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:6:5-74
+13-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:6:22-71
+14    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+14-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:7:5-76
+14-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:7:22-73
+15    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+15-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:8:5-73
+15-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:8:22-70
+16
+17    <!-- Location is required for BLE scanning on older Android versions -->
+18    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+18-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:11:5-79
+18-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:11:22-76
+19
+20    <permission
+20-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+21        android:name="com.navigation.esp32.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+22        android:protectionLevel="signature" />
+22-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+23
+24    <uses-permission android:name="com.navigation.esp32.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+24-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+25
+26    <application
+26-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:13:5-38:19
+27        android:allowBackup="true"
+27-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:14:9-35
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.9.0] /home/fredrik/.gradle/caches/transforms-3/be041eb7ac8d90fdb70618a68cefe5c0/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+29        android:debuggable="true"
+30        android:extractNativeLibs="false"
+31        android:label="ESP32 Navigation"
+31-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:15:9-41
+32        android:supportsRtl="true"
+32-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:16:9-35
+33        android:theme="@style/Theme.ESP32Nav" >
+33-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:17:9-46
+34        <activity
+34-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:19:9-26:20
+35            android:name="com.navigation.esp32.MainActivity"
+35-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:20:13-41
+36            android:exported="true" >
+36-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:21:13-36
+37            <intent-filter>
+37-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:22:13-25:29
+38                <action android:name="android.intent.action.MAIN" />
+38-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:23:17-69
+38-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:23:25-66
+39
+40                <category android:name="android.intent.category.LAUNCHER" />
+40-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:24:17-77
+40-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:24:27-74
+41            </intent-filter>
+42        </activity>
+43
+44        <!-- Service to intercept Google Maps notifications -->
+45        <service
+45-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:29:9-36:19
+46            android:name="com.navigation.esp32.NavNotificationService"
+46-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:29:18-56
+47            android:exported="true"
+47-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:32:13-36
+48            android:label="ESP32 Nav Notification Reader"
+48-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:30:13-58
+49            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+49-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:31:13-87
+50            <intent-filter>
+50-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:33:13-35:29
+51                <action android:name="android.service.notification.NotificationListenerService" />
+51-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:34:17-99
+51-->/home/fredrik/Documents/GitHub/ESP32Navigation/AndroidApp/app/src/main/AndroidManifest.xml:34:25-96
+52            </intent-filter>
+53        </service>
+54
+55        <provider
+55-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+56            android:name="androidx.startup.InitializationProvider"
+56-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+57            android:authorities="com.navigation.esp32.androidx-startup"
+57-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+58            android:exported="false" >
+58-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+59            <meta-data
+59-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+60                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+60-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+61                android:value="androidx.startup" />
+61-->[androidx.emoji2:emoji2:1.2.0] /home/fredrik/.gradle/caches/transforms-3/443e7c98ee1d6bf3d0d2cd36a59d0e75/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+62            <meta-data
+62-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/transforms-3/fdf5e0bb8d458c2b27f4674b18f74514/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+63                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+63-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/transforms-3/fdf5e0bb8d458c2b27f4674b18f74514/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+64                android:value="androidx.startup" />
+64-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/fredrik/.gradle/caches/transforms-3/fdf5e0bb8d458c2b27f4674b18f74514/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+65        </provider>
+66    </application>
+67
+68</manifest>

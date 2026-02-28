@@ -1,10 +1,20 @@
 #include "ble_manager.h"
 #include "ui.h"
+#include <Arduino.h>
 #include <NimBLEDevice.h>
+#include <mutex>
 
-// UUIDs for the Custom Android Navigation Service
-#define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-#define CHARACTERISTIC_UUID "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+// Thread-safe data exchange between NimBLE task and LVGL task
+static std::mutex nav_mutex;
+static String g_nav_instruction = "";
+static String g_nav_street = "";
+static String g_nav_distance = "";
+static bool g_new_nav_data = false;
+
+// UUIDs for the Custom Android Navigation Service (Matches Android
+// BleClientManager)
+#define SERVICE_UUID "12345678-1234-5678-1234-56789abcdef0"
+#define CHARACTERISTIC_UUID "12345678-1234-5678-1234-56789abcdef1"
 
 // ANCS Service IDs for iOS
 #define ANCS_SERVICE_UUID "7905f431-b5ce-4e99-a40f-4b1e122d00d0"
@@ -16,6 +26,7 @@ static NimBLEServer *pServer = nullptr;
 class MyServerCallbacks : public NimBLEServerCallbacks {
   void onConnect(NimBLEServer *pServer, ble_gap_conn_desc *desc) {
     deviceConnected = true;
+    Serial.printf("BLE Client Connected! Handle: %d\n", desc->conn_handle);
     // Require security/pairing right away, crucial for both Android persistency
     // and iOS ANCS
     NimBLEDevice::startSecurity(desc->conn_handle);
@@ -26,23 +37,59 @@ class MyServerCallbacks : public NimBLEServerCallbacks {
 
   void onDisconnect(NimBLEServer *pServer, ble_gap_conn_desc *desc) {
     deviceConnected = false;
+    Serial.println("BLE Client Disconnected!");
     ui_show_connecting();
     NimBLEDevice::startAdvertising();
   }
 };
 
+static int rx_count = 0;
+
 // Callback for when Android App sends navigation details
 class AndroidNavCallbacks : public NimBLECharacteristicCallbacks {
   void onWrite(NimBLECharacteristic *pCharacteristic) {
     std::string rxValue = pCharacteristic->getValue();
+    rx_count++;
+    Serial.printf("BLE onWrite! Len: %d | Payload: %s\n", rxValue.length(),
+                  rxValue.c_str());
+
     if (rxValue.length() > 0) {
-      // For now, naive display mapping.
-      // In a real scenario we'd parse JSON or pipe-delimited values like
-      // "Left|300m|Main St"
-      ui_show_navigation("->", "N/A", rxValue.c_str());
+      // Incoming format: instruction,street,distance
+      String payload = String(rxValue.c_str());
+
+      int firstComma = payload.indexOf(',');
+      int secondComma = payload.indexOf(',', firstComma + 1);
+
+      if (firstComma != -1 && secondComma != -1) {
+        String instruction = payload.substring(0, firstComma);
+        String street = payload.substring(firstComma + 1, secondComma);
+        String distance = payload.substring(secondComma + 1);
+
+        std::lock_guard<std::mutex> lock(nav_mutex);
+        g_nav_instruction = instruction;
+        g_nav_street = street;
+        g_nav_distance = distance;
+        g_new_nav_data = true;
+      } else {
+        // Fallback if parsing fails
+        std::lock_guard<std::mutex> lock(nav_mutex);
+        g_nav_instruction = "Nav";
+        g_nav_street = "-";
+        g_nav_distance = rxValue.c_str();
+        g_new_nav_data = true;
+      }
     }
   }
 };
+
+void ble_process_nav_data() {
+  std::lock_guard<std::mutex> lock(nav_mutex);
+  if (g_new_nav_data) {
+    g_new_nav_data = false;
+    ui_show_navigation(g_nav_instruction.c_str(), g_nav_distance.c_str(),
+                       g_nav_street.c_str());
+  }
+}
 
 void ble_init() {
   NimBLEDevice::init("ESP32_Nav");
@@ -62,8 +109,9 @@ void ble_init() {
   // 1. Setup Custom Service for Android App
   NimBLEService *pNavService = pServer->createService(SERVICE_UUID);
   NimBLECharacteristic *pNavChar = pNavService->createCharacteristic(
-      CHARACTERISTIC_UUID,
-      NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE | NIMBLE_PROPERTY::NOTIFY);
+      CHARACTERISTIC_UUID, NIMBLE_PROPERTY::READ | NIMBLE_PROPERTY::WRITE |
+                               NIMBLE_PROPERTY::WRITE_NR |
+                               NIMBLE_PROPERTY::NOTIFY);
   pNavChar->setCallbacks(new AndroidNavCallbacks());
   pNavService->start();
 

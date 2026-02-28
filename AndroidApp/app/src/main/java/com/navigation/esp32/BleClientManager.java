@@ -35,6 +35,8 @@ public class BleClientManager {
 
     public interface BleListener {
         void onConnectionStateChange(boolean connected);
+
+        void onLog(String message);
     }
 
     private BleListener listener;
@@ -49,9 +51,10 @@ public class BleClientManager {
     }
 
     public void startScan() {
-        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled()) return;
+        if (bluetoothAdapter == null || !bluetoothAdapter.isEnabled())
+            return;
         bluetoothLeScanner = bluetoothAdapter.getBluetoothLeScanner();
-        Log.d(TAG, "Starting BLE Scan...");
+        listener.onLog("Starting BLE Scan...");
         bluetoothLeScanner.startScan(scanCallback);
     }
 
@@ -60,12 +63,25 @@ public class BleClientManager {
         public void onScanResult(int callbackType, ScanResult result) {
             BluetoothDevice device = result.getDevice();
             if (device.getName() != null && device.getName().equals("ESP32_Nav")) {
-                Log.d(TAG, "Found ESP32_Nav! Connecting...");
+                listener.onLog("Found ESP32! Connecting...");
                 bluetoothLeScanner.stopScan(this);
                 connectToDevice(device);
             }
         }
     };
+
+    @SuppressLint("DiscouragedPrivateApi")
+    private void refreshDeviceCache(BluetoothGatt gatt) {
+        try {
+            java.lang.reflect.Method localMethod = gatt.getClass().getMethod("refresh");
+            if (localMethod != null) {
+                boolean result = (Boolean) localMethod.invoke(gatt);
+                handler.post(() -> listener.onLog("GATT Cache Cleared: " + result));
+            }
+        } catch (Exception localException) {
+            handler.post(() -> listener.onLog("GATT Cache Clear Failed"));
+        }
+    }
 
     private void connectToDevice(BluetoothDevice device) {
         bluetoothGatt = device.connectGatt(context, false, gattCallback);
@@ -75,11 +91,14 @@ public class BleClientManager {
         @Override
         public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
             if (newState == BluetoothProfile.STATE_CONNECTED) {
-                Log.d(TAG, "Connected to GATT server.");
+                handler.post(() -> listener.onLog("Connected to GATT. Refreshing memory..."));
+                refreshDeviceCache(gatt);
                 handler.post(() -> listener.onConnectionStateChange(true));
-                gatt.discoverServices();
+
+                // Delay discovery slightly to allow the cache wipe to finalize
+                handler.postDelayed(() -> gatt.discoverServices(), 600);
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
-                Log.d(TAG, "Disconnected from GATT server.");
+                handler.post(() -> listener.onLog("Disconnected from GATT."));
                 handler.post(() -> listener.onConnectionStateChange(false));
             }
         }
@@ -87,25 +106,54 @@ public class BleClientManager {
         @Override
         public void onServicesDiscovered(BluetoothGatt gatt, int status) {
             if (status == BluetoothGatt.GATT_SUCCESS) {
-                Log.d(TAG, "Services discovered.");
+                handler.post(() -> listener.onLog("Services discovered! Req MTU 512..."));
+                // Print the specific services we found to debug exactly what the phone sees
+                for (BluetoothGattService s : gatt.getServices()) {
+                    String uuid = s.getUuid().toString();
+                    if (uuid.startsWith("12345678")) {
+                        handler.post(() -> listener.onLog("Found Target Service: " + uuid.substring(0, 8) + "..."));
+                    }
+                }
+                gatt.requestMtu(512);
+            } else {
+                handler.post(() -> listener.onLog("Service discovery failed: " + status));
             }
+        }
+
+        @Override
+        public void onMtuChanged(BluetoothGatt gatt, int mtu, int status) {
+            super.onMtuChanged(gatt, mtu, status);
+            handler.post(() -> listener.onLog("MTU agreed: " + mtu));
         }
     };
 
     public void sendNavUpdate(String instruction, String street, String distance) {
-        if (bluetoothGatt == null) return;
+        if (bluetoothGatt == null) {
+            listener.onLog("sendNavUpdate: bluetoothGatt is null");
+            return;
+        }
 
         BluetoothGattService service = bluetoothGatt.getService(SERVICE_UUID);
-        if (service == null) return;
+        if (service == null) {
+            listener.onLog("sendNavUpdate: Service not found");
+            return;
+        }
 
         BluetoothGattCharacteristic characteristic = service.getCharacteristic(CHAR_NAV_DATA_UUID);
-        if (characteristic == null) return;
+        if (characteristic == null) {
+            listener.onLog("sendNavUpdate: Characteristic not found");
+            return;
+        }
 
         // Simple CSV payload format matching ESP32 parser
         String payload = instruction + "," + street + "," + distance;
         characteristic.setValue(payload.getBytes());
-        bluetoothGatt.writeCharacteristic(characteristic);
-        Log.d(TAG, "Sent Nav Payload: " + payload);
+        // Fire-and-forget: do not wait for ESP32 acknowledgement to prevent Android BLE
+        // stack locks
+        characteristic.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_NO_RESPONSE);
+
+        boolean success = bluetoothGatt.writeCharacteristic(characteristic);
+        handler.post(() -> listener.onLog("Sent Nav Payload | Success: " + success));
     }
 
     public void disconnect() {
