@@ -66,9 +66,10 @@ public class NavNotificationService extends NotificationListenerService {
         }
 
         String extractedDistance = subText;
+        String currentTime = new java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault()).format(new java.util.Date());
 
         if (!title.isEmpty() || !extractedStreet.isEmpty() || !extractedDistance.isEmpty()) {
-            Log.d(TAG, "Nav Update -> Title: " + title + " | Street: " + extractedStreet + " | Dist: " + extractedDistance);
+            Log.d(TAG, "Nav Update -> Title: " + title + " | Street: " + extractedStreet + " | Dist: " + extractedDistance + " | Time: " + currentTime);
 
             int maneuverId = parseManeuverId(title);
 
@@ -77,6 +78,7 @@ public class NavNotificationService extends NotificationListenerService {
             intent.putExtra("instruction", title);
             intent.putExtra("street", extractedStreet);
             intent.putExtra("distance", extractedDistance);
+            intent.putExtra("time", currentTime);
             sendBroadcast(intent);
         }
     }

@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
             String mockInstruction = "Turn right";
             String mockStreet = "Test Avenue";
             String mockDistance = "300m";
+            String mockTime = "12:00";
 
-            appendLog("MOCK -> [" + mockId + "] " + mockInstruction + " | " + mockStreet + " | " + mockDistance);
+            appendLog("MOCK -> [" + mockId + "] " + mockInstruction + " | " + mockStreet + " | " + mockDistance + " | " + mockTime);
 
             if (bleManager != null) {
-                bleManager.sendNavUpdate(mockId, mockInstruction, mockStreet, mockDistance);
+                bleManager.sendNavUpdate(mockId, mockInstruction, mockStreet, mockDistance, mockTime);
             } else {
                 Toast.makeText(this, "BLE Manager not initialized.", Toast.LENGTH_SHORT).show();
             }
@@ -80,11 +81,14 @@ public class MainActivity extends AppCompatActivity implements BleClientManager.
             String instruction = intent.getStringExtra("instruction");
             String street = intent.getStringExtra("street");
             String distance = intent.getStringExtra("distance");
+            String time = intent.getStringExtra("time");
 
-            appendLog("LIVE: [" + maneuverId + "] " + instruction + " - " + street + " - " + distance);
+            if (time == null) time = "00:00";
+
+            appendLog("LIVE: [" + maneuverId + "] " + instruction + " - " + street + " - " + distance + " @ " + time);
 
             if (bleManager != null) {
-                bleManager.sendNavUpdate(maneuverId, instruction, street, distance);
+                bleManager.sendNavUpdate(maneuverId, instruction, street, distance, time);
             }
         }
     };

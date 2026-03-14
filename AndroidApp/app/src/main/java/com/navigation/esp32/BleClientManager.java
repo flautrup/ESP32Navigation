@@ -127,7 +127,7 @@ public class BleClientManager {
         }
     };
 
-    public void sendNavUpdate(int maneuverId, String instruction, String street, String distance) {
+    public void sendNavUpdate(int maneuverId, String instruction, String street, String distance, String currentTime) {
         if (bluetoothGatt == null) {
             listener.onLog("sendNavUpdate: bluetoothGatt is null");
             return;
@@ -146,7 +146,7 @@ public class BleClientManager {
         }
 
         // Simple payload format matching ESP32 parser, using pipe to avoid comma conflicts
-        String payload = maneuverId + "|" + instruction + "|" + street + "|" + distance;
+        String payload = maneuverId + "|" + instruction + "|" + street + "|" + distance + "|" + currentTime;
         characteristic.setValue(payload.getBytes());
         // Fire-and-forget: do not wait for ESP32 acknowledgement to prevent Android BLE
         // stack locks

@@ -9,14 +9,34 @@ LV_FONT_DECLARE(lv_font_montserrat_48);
 static lv_obj_t *scr_config;
 static lv_obj_t *scr_connecting;
 static lv_obj_t *scr_nav;
+static lv_obj_t *scr_clock;
 
 // Nav screen components declaration
 static lv_obj_t *lbl_maneuver;
 static lv_obj_t *lbl_distance;
 static lv_obj_t *lbl_street;
+static lv_obj_t *bar_progress;
+
+// Clock screen components
+static lv_obj_t *lbl_clock;
 
 // Button Event callback to switch to connecting screen
 static void btn_pair_evt(lv_event_t *e) { ui_show_connecting(); }
+
+// Gesture Events
+static void gesture_nav_cb(lv_event_t *e) {
+  lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
+  if(dir == LV_DIR_LEFT || dir == LV_DIR_RIGHT) {
+    ui_show_clock(); // Swipe takes you to clock
+  }
+}
+
+static void gesture_clock_cb(lv_event_t *e) {
+  lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
+  if(dir == LV_DIR_LEFT || dir == LV_DIR_RIGHT) {
+    lv_scr_load_anim(scr_nav, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, false);
+  }
+}
 
 void ui_init() {
   // 1. Config Screen Initialization
@@ -50,6 +70,8 @@ void ui_init() {
   // 3. Navigation Screen Initialization
   scr_nav = lv_obj_create(NULL);
   lv_obj_set_style_bg_color(scr_nav, lv_color_black(), 0);
+  lv_obj_add_event_cb(scr_nav, gesture_nav_cb, LV_EVENT_GESTURE, NULL);
+  lv_obj_clear_flag(scr_nav, LV_OBJ_FLAG_SCROLLABLE);
 
   lbl_maneuver = lv_label_create(scr_nav);
   lv_obj_set_style_text_font(lbl_maneuver, &lv_font_montserrat_48,
@@ -73,7 +95,27 @@ void ui_init() {
                              0); // Readable ASCII street font
   lv_label_set_text(lbl_street, "Waiting for route...");
   lv_obj_set_style_text_color(lbl_street, lv_color_white(), 0);
-  lv_obj_align(lbl_street, LV_ALIGN_CENTER, 0, 50);
+  lv_obj_align(lbl_street, LV_ALIGN_CENTER, 0, 45);
+
+  bar_progress = lv_bar_create(scr_nav);
+  lv_obj_set_size(bar_progress, 180, 8);
+  lv_obj_align(bar_progress, LV_ALIGN_BOTTOM_MID, 0, -10);
+  lv_bar_set_range(bar_progress, 0, 100);
+  lv_bar_set_value(bar_progress, 0, LV_ANIM_OFF);
+  lv_obj_set_style_bg_color(bar_progress, lv_color_make(30, 30, 30), LV_PART_MAIN);
+  lv_obj_set_style_bg_color(bar_progress, lv_color_white(), LV_PART_INDICATOR);
+
+  // 4. Clock Screen Initialization
+  scr_clock = lv_obj_create(NULL);
+  lv_obj_set_style_bg_color(scr_clock, lv_color_black(), 0);
+  lv_obj_add_event_cb(scr_clock, gesture_clock_cb, LV_EVENT_GESTURE, NULL);
+  lv_obj_clear_flag(scr_clock, LV_OBJ_FLAG_SCROLLABLE);
+
+  lbl_clock = lv_label_create(scr_clock);
+  lv_obj_set_style_text_font(lbl_clock, &lv_font_montserrat_48, 0);
+  lv_label_set_text(lbl_clock, "00:00");
+  lv_obj_set_style_text_color(lbl_clock, lv_color_white(), 0);
+  lv_obj_align(lbl_clock, LV_ALIGN_CENTER, 0, 0);
 
   // Show config screen by default
   lv_scr_load(scr_config);
@@ -87,8 +129,20 @@ void ui_show_connecting() {
   lv_scr_load_anim(scr_connecting, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, false);
 }
 
+void ui_show_clock() {
+  if (lv_scr_act() != scr_clock) {
+    lv_scr_load_anim(scr_clock, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, false);
+  }
+}
+
 void ui_show_navigation(int maneuverId, const char *distance,
-                        const char *street) {
+                        const char *street, const char *currentTime,
+                        int progressPercent) {
+  // Update Clock Label regardless of screen state
+  if (currentTime && strlen(currentTime) > 0) {
+      lv_label_set_text(lbl_clock, currentTime);
+  }
+
   const char *symbol = LV_SYMBOL_UP; // Default straight
 
   switch (maneuverId) {
@@ -128,9 +182,11 @@ void ui_show_navigation(int maneuverId, const char *distance,
   lv_label_set_text(lbl_maneuver, symbol);
   lv_label_set_text(lbl_distance, distance);
   lv_label_set_text(lbl_street, street);
+  lv_bar_set_value(bar_progress, progressPercent, LV_ANIM_ON);
 
-  // Switch to Navigation screen if not already visible
-  if (lv_scr_act() != scr_nav) {
+  // Only switch back to Navigation screen if we were NOT explicitly looking at the clock screen
+  // E.G. if we're on the clock screen, let it keep showing the clock while nav data updates quietly.
+  if (lv_scr_act() != scr_nav && lv_scr_act() != scr_clock) {
     lv_scr_load_anim(scr_nav, LV_SCR_LOAD_ANIM_FADE_ON, 300, 0, false);
   }
 }

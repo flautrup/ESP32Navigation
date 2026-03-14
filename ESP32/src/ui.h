@@ -12,4 +12,8 @@ void ui_show_connecting();
 
 // Show the active navigation screen with turn details
 void ui_show_navigation(int maneuverId, const char *distance,
-                        const char *street);
+                        const char *street, const char *currentTime,
+                        int progressPercent);
+
+// Show the clock screen
+void ui_show_clock();
