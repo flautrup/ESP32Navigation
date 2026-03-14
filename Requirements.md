@@ -8,31 +8,32 @@ Connection to phone should be by Bluetooth Low Energy (BLE). No WiFi will be use
 
 It should be possible to install apps on the phones without the need to use app stores.
 
-## User flow
+## User flow [DONE]
 1. User turns on the motorcycle
 2. User turns on the ESP32 navigation system
-3. ESP32 navigation system connects to the phone
-4. User opens Google Maps on the phone
-5. User enters destination in Google Maps
-6. Google Maps sends turn by turn navigation to the ESP32 (via an Android companion app or iOS ANCS)
-7. ESP32 displays turn by turn navigation on the GC9A01 round 240x240 IPS display
-8. User turns off the motorcycle
-9. ESP32 navigation system turns off
+3. ESP32 navigation system connects to the phone (via Android App or native iOS Bluetooth)
+4. User opens Google Maps (or Apple Maps on iOS)
+5. User enters destination
+6. Instructions are sent to ESP32 via BLE
+7. ESP32 displays turn details, street name, and progress
+8. Navigation ends, user turns off bike
 
-## Optional features
-- Able to use sound from phone connected to bluetooth headphones
-- Able to use touch controller to control the ESP32 navigation system
+## Implemented Features
+- **[DONE] BLE Connectivity**: Robust Low Energy communication for long battery life.
+- **[DONE] Cross-Platform**: 
+    - **Android**: Custom companion app with notification listening.
+    - **iOS**: Native support via **ANCS** (no app required).
+- **[DONE] UI Screens**:
+    - **Navigation View**: Visual icons, street names, and distance.
+    - **Progress Bar**: Relative journey progress indicator.
+    - **Clock Screen**: Full-screen digital clock accessible via swipe.
+- **[DONE] Localization**: Automatic transliteration of Swedish characters (å, ä, ö) for the display.
+- **[DONE] Touch Control**: Swipe gestures (Left/Right) to switch between Navigation and Clock.
 
-## Additional Requirements
-- **BLE LE**: Bluetooth Low Energy (LE) MUST be used for all phone-to-ESP32 communication.
-- **iOS Strategy**: iOS MUST use Apple Notification Center Service (ANCS) with the ESP32 acting as an ANCS Client to read notifications directly without a custom iOS app.
-- **Configuration UI**: The ESP32 MUST have an on-device configuration UI to manage settings directly.
-
-## Hardware
-- ESP32
+## Hardware [DONE]
+- ESP32-C3
 - GC9A01 round 240x240 IPS display
 - CST816S touch controller
-- Google Pixel 9 with Android
-- iPhone 15 with iOS
+- Android & iOS Smartphones
 
 
