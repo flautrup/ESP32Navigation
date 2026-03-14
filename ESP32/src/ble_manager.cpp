@@ -55,18 +55,39 @@ class AndroidNavCallbacks : public NimBLECharacteristicCallbacks {
                   rxValue.c_str());
 
     if (rxValue.length() > 0) {
-      // Incoming format: maneuverId,instruction,street,distance
+      // Incoming format: maneuverId|instruction|street|distance
       String payload = String(rxValue.c_str());
 
-      int firstComma = payload.indexOf(',');
-      int secondComma = payload.indexOf(',', firstComma + 1);
-      int thirdComma = payload.indexOf(',', secondComma + 1);
+      int firstPipe = payload.indexOf('|');
+      int secondPipe = payload.indexOf('|', firstPipe + 1);
+      int thirdPipe = payload.indexOf('|', secondPipe + 1);
 
-      if (firstComma != -1 && secondComma != -1 && thirdComma != -1) {
-        int maneuverId = payload.substring(0, firstComma).toInt();
-        String instruction = payload.substring(firstComma + 1, secondComma);
-        String street = payload.substring(secondComma + 1, thirdComma);
-        String distance = payload.substring(thirdComma + 1);
+      if (firstPipe != -1 && secondPipe != -1 && thirdPipe != -1) {
+        int maneuverId = payload.substring(0, firstPipe).toInt();
+        String instruction = firstPipe + 1 == secondPipe ? "" : payload.substring(firstPipe + 1, secondPipe);
+        String street = secondPipe + 1 == thirdPipe ? "" : payload.substring(secondPipe + 1, thirdPipe);
+        String distance = payload.substring(thirdPipe + 1);
+
+        // Fallback ASCII Transliteration for Swedish Characters to avoid LVGL Squares
+        // Since we don't have a 24px/32px custom font engine available on the host
+        auto transliterate = [](String &str) {
+            str.replace("å", "a");
+            str.replace("ä", "a");
+            str.replace("ö", "o");
+            str.replace("Å", "A");
+            str.replace("Ä", "A");
+            str.replace("Ö", "O");
+            // Also replace common multi-byte UTF-8 representations for åäö just in case
+            str.replace("\xC3\xA5", "a"); // å
+            str.replace("\xC3\xA4", "a"); // ä
+            str.replace("\xC3\xB6", "o"); // ö
+            str.replace("\xC3\x85", "A"); // Å
+            str.replace("\xC3\x84", "A"); // Ä
+            str.replace("\xC3\x96", "O"); // Ö
+        };
+        transliterate(instruction);
+        transliterate(street);
+        transliterate(distance);
 
         std::lock_guard<std::mutex> lock(nav_mutex);
         g_nav_maneuver_id = maneuverId;

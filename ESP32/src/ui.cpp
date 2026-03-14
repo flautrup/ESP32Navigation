@@ -66,8 +66,11 @@ void ui_init() {
   lv_obj_align(lbl_distance, LV_ALIGN_CENTER, 0, 0);
 
   lbl_street = lv_label_create(scr_nav);
+  lv_obj_set_width(lbl_street, 200); // Prevent text from bleeding off round edges
+  lv_label_set_long_mode(lbl_street, LV_LABEL_LONG_WRAP);
+  lv_obj_set_style_text_align(lbl_street, LV_TEXT_ALIGN_CENTER, 0);
   lv_obj_set_style_text_font(lbl_street, &lv_font_montserrat_24,
-                             0); // Readable street font
+                             0); // Readable ASCII street font
   lv_label_set_text(lbl_street, "Waiting for route...");
   lv_obj_set_style_text_color(lbl_street, lv_color_white(), 0);
   lv_obj_align(lbl_street, LV_ALIGN_CENTER, 0, 50);

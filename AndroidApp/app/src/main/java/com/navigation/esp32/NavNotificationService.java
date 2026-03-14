@@ -35,20 +35,48 @@ public class NavNotificationService extends NotificationListenerService {
         // android.text is usually the Street name "Main St"
         // android.subText is usually the distance "500ft" or ETA
 
-        String title = extras.getString(Notification.EXTRA_TITLE, "");
-        String text = extras.getString(Notification.EXTRA_TEXT, "");
-        String subText = extras.getString(Notification.EXTRA_SUB_TEXT, "");
+        // Dump all keys to logcat for deeper debugging if text is still missing
+        for (String key : extras.keySet()) {
+            Object value = extras.get(key);
+            Log.v(TAG, "EXTRA_DUMP -> " + key + ": " + value);
+        }
 
-        if (!title.isEmpty() || !text.isEmpty()) {
-            Log.d(TAG, "Nav Update -> Title: " + title + " | Text: " + text + " | Sub: " + subText);
+        CharSequence titleCs = extras.getCharSequence(Notification.EXTRA_TITLE);
+        CharSequence textCs = extras.getCharSequence(Notification.EXTRA_TEXT);
+        CharSequence subTextCs = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
+        CharSequence bigTextCs = extras.getCharSequence(Notification.EXTRA_BIG_TEXT);
+
+        String title = titleCs != null ? titleCs.toString() : "";
+        String text = textCs != null ? textCs.toString() : "";
+        String subText = subTextCs != null ? subTextCs.toString() : "";
+        String bigText = bigTextCs != null ? bigTextCs.toString() : "";
+
+        // If 'text' is empty, fallback to 'bigText'. If both are identical to the title, 
+        // Google Maps might be sending a single-line instruction without a street name.
+        String extractedStreet = text;
+        if (extractedStreet.isEmpty()) {
+            extractedStreet = bigText;
+        }
+        
+        // If the street we found is exactly the same as the title, it's redundant.
+        // Or if the street is totally empty, we can just send the title as the street
+        // so the user sees *something* on the bottom label of the ESP32.
+        if (extractedStreet.isEmpty() || extractedStreet.equals(title)) {
+            extractedStreet = title;
+        }
+
+        String extractedDistance = subText;
+
+        if (!title.isEmpty() || !extractedStreet.isEmpty() || !extractedDistance.isEmpty()) {
+            Log.d(TAG, "Nav Update -> Title: " + title + " | Street: " + extractedStreet + " | Dist: " + extractedDistance);
 
             int maneuverId = parseManeuverId(title);
 
             Intent intent = new Intent(ACTION_NAV_UPDATE);
             intent.putExtra("maneuver_id", maneuverId);
             intent.putExtra("instruction", title);
-            intent.putExtra("street", text);
-            intent.putExtra("distance", subText);
+            intent.putExtra("street", extractedStreet);
+            intent.putExtra("distance", extractedDistance);
             sendBroadcast(intent);
         }
     }

@@ -58,6 +58,8 @@
 /*=======================
  * FEATURE CONFIGURATION
  *=======================*/
+#define LV_TXT_ENC LV_TXT_ENC_UTF8
+#define LV_TXT_BREAK_CHARS " ,.;:-_"
 
 /*-------------
  * Drawing

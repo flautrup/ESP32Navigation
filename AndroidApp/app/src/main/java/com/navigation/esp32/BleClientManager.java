@@ -145,9 +145,8 @@ public class BleClientManager {
             return;
         }
 
-        // Simple CSV payload format matching ESP32 parser, now with prepended Maneuver
-        // ID
-        String payload = maneuverId + "," + instruction + "," + street + "," + distance;
+        // Simple payload format matching ESP32 parser, using pipe to avoid comma conflicts
+        String payload = maneuverId + "|" + instruction + "|" + street + "|" + distance;
         characteristic.setValue(payload.getBytes());
         // Fire-and-forget: do not wait for ESP32 acknowledgement to prevent Android BLE
         // stack locks
