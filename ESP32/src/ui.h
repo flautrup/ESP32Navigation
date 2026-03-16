@@ -17,3 +17,9 @@ void ui_show_navigation(int maneuverId, const char *distance,
 
 // Show the clock screen
 void ui_show_clock();
+
+// Show the arrival time + street screen
+void ui_show_arrival();
+
+// Show the large distance/direction-only screen
+void ui_show_distance();
