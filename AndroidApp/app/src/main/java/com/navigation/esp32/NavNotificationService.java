@@ -44,66 +44,23 @@ public class NavNotificationService extends NotificationListenerService {
         CharSequence titleCs = extras.getCharSequence(Notification.EXTRA_TITLE);
         CharSequence textCs = extras.getCharSequence(Notification.EXTRA_TEXT);
         CharSequence subTextCs = extras.getCharSequence(Notification.EXTRA_SUB_TEXT);
-        CharSequence bigTextCs = extras.getCharSequence(Notification.EXTRA_BIG_TEXT);
 
         String title = titleCs != null ? titleCs.toString() : "";
         String text = textCs != null ? textCs.toString() : "";
         String subText = subTextCs != null ? subTextCs.toString() : "";
-        String bigText = bigTextCs != null ? bigTextCs.toString() : "";
 
-        // If 'text' is empty, fallback to 'bigText'. If both are identical to the title, 
-        // Google Maps might be sending a single-line instruction without a street name.
-        String extractedStreet = text;
-        if (extractedStreet.isEmpty()) {
-            extractedStreet = bigText;
-        }
-        
-        // If the street we found is exactly the same as the title, it's redundant.
-        // Or if the street is totally empty, we can just send the title as the street
-        // so the user sees *something* on the bottom label of the ESP32.
-        if (extractedStreet.isEmpty() || extractedStreet.equals(title)) {
-            extractedStreet = title;
-        }
-
-        String extractedDistance = subText;
         String currentTime = new java.text.SimpleDateFormat("HH:mm", java.util.Locale.getDefault()).format(new java.util.Date());
 
-        if (!title.isEmpty() || !extractedStreet.isEmpty() || !extractedDistance.isEmpty()) {
-            Log.d(TAG, "Nav Update -> Title: " + title + " | Street: " + extractedStreet + " | Dist: " + extractedDistance + " | Time: " + currentTime);
-
-            int maneuverId = parseManeuverId(title);
+        if (!title.isEmpty() || !text.isEmpty() || !subText.isEmpty()) {
+            Log.d(TAG, "Nav Update -> Title: " + title + " | Text: " + text + " | SubText: " + subText + " | Time: " + currentTime);
 
             Intent intent = new Intent(ACTION_NAV_UPDATE);
-            intent.putExtra("maneuver_id", maneuverId);
-            intent.putExtra("instruction", title);
-            intent.putExtra("street", extractedStreet);
-            intent.putExtra("distance", extractedDistance);
+            intent.putExtra("title", title);
+            intent.putExtra("text", text);
+            intent.putExtra("subText", subText);
             intent.putExtra("time", currentTime);
             sendBroadcast(intent);
         }
-    }
-
-    private int parseManeuverId(String instruction) {
-        if (instruction == null || instruction.isEmpty())
-            return 0; // Default / Straight
-        String lower = instruction.toLowerCase().trim();
-
-        if (lower.contains("u-turn"))
-            return 5;
-        if (lower.contains("roundabout"))
-            return 6;
-        if (lower.contains("keep left") || lower.contains("bear left"))
-            return 3;
-        if (lower.contains("keep right") || lower.contains("bear right"))
-            return 4;
-        if (lower.contains("left"))
-            return 1;
-        if (lower.contains("right"))
-            return 2;
-        if (lower.contains("arrive") || lower.contains("destination"))
-            return 7;
-
-        return 0; // Default straight arrow
     }
 
     @Override
@@ -111,10 +68,10 @@ public class NavNotificationService extends NotificationListenerService {
         if (sbn.getPackageName().equals(GOOGLE_MAPS_PACKAGE)) {
             Log.d(TAG, "Navigation Ended.");
             Intent intent = new Intent(ACTION_NAV_UPDATE);
-            intent.putExtra("maneuver_id", 7); // Arrived/Ended flag
-            intent.putExtra("instruction", "Arrived or Ended");
-            intent.putExtra("street", "");
-            intent.putExtra("distance", "");
+            intent.putExtra("title", "Ended");
+            intent.putExtra("text", "");
+            intent.putExtra("subText", "");
+            intent.putExtra("time", "");
             sendBroadcast(intent);
         }
     }

@@ -3099,11 +3099,13 @@ id beginning
 id bestChoice
 id blocking
 id bottom
+id bottomButtonsLayout
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
 id btnConnect
+id btnExportLog
 id btnMockData
 id buttonPanel
 id cache_measures

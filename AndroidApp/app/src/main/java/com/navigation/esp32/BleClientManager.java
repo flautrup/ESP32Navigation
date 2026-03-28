@@ -127,7 +127,7 @@ public class BleClientManager {
         }
     };
 
-    public void sendNavUpdate(int maneuverId, String instruction, String street, String distance, String currentTime) {
+    public void sendNavUpdate(String title, String text, String subText, String currentTime) {
         if (bluetoothGatt == null) {
             listener.onLog("sendNavUpdate: bluetoothGatt is null");
             return;
@@ -145,8 +145,8 @@ public class BleClientManager {
             return;
         }
 
-        // Simple payload format matching ESP32 parser, using pipe to avoid comma conflicts
-        String payload = maneuverId + "|" + instruction + "|" + street + "|" + distance + "|" + currentTime;
+        // Send raw Google Maps text separated by pipe to parse on the ESP32
+        String payload = title + "|" + text + "|" + subText + "|" + currentTime;
         characteristic.setValue(payload.getBytes());
         // Fire-and-forget: do not wait for ESP32 acknowledgement to prevent Android BLE
         // stack locks

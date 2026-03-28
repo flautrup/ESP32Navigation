@@ -6,6 +6,15 @@ LV_FONT_DECLARE(lv_font_montserrat_24);
 LV_FONT_DECLARE(lv_font_montserrat_32);
 LV_FONT_DECLARE(lv_font_montserrat_48);
 
+LV_IMG_DECLARE(ui_img_ic_straight_png);
+LV_IMG_DECLARE(ui_img_ic_turn_left_png);
+LV_IMG_DECLARE(ui_img_ic_turn_right_png);
+LV_IMG_DECLARE(ui_img_ic_turn_slight_left_png);
+LV_IMG_DECLARE(ui_img_ic_turn_slight_right_png);
+LV_IMG_DECLARE(ui_img_ic_turn_u_turn_counterclockwise_png);
+LV_IMG_DECLARE(ui_img_ic_roundabout_clockwise_png);
+LV_IMG_DECLARE(ui_img_ic_destination_png);
+
 // ---------------------------------------------------------------------------
 // Screens  (cycle: Nav → Arrival → Clock → Nav)
 // ---------------------------------------------------------------------------
@@ -18,7 +27,8 @@ static lv_obj_t *scr_clock;
 // ---------------------------------------------------------------------------
 // Nav screen  — icon + distance together + street name below
 // ---------------------------------------------------------------------------
-static lv_obj_t *lbl_maneuver;      // LVGL symbol icon (e.g. LV_SYMBOL_LEFT)
+static lv_obj_t *img_maneuver;      // Image object for navigation arrow
+static lv_obj_t *lbl_exit_number;   // Number inside roundabout icon
 static lv_obj_t *lbl_distance_nav;  // Distance to next turn
 static lv_obj_t *lbl_street;        // Street name (small)
 static lv_obj_t *arc_progress;      // Arc progress along screen edge
@@ -31,19 +41,18 @@ static lv_obj_t *lbl_arrival_street;
 static lv_obj_t *lbl_clock;
 
 // ---------------------------------------------------------------------------
-// Helper: map maneuverId → LVGL symbol string
-//   All LV_SYMBOL_* are always available in every LVGL font build.
+// Helper: map maneuverId → LVGL image descriptor
 // ---------------------------------------------------------------------------
-static const char *maneuverId_to_symbol(int id) {
+static const lv_img_dsc_t* maneuverId_to_image(int id) {
   switch (id) {
-    case 1: return LV_SYMBOL_LEFT;          // Turn left
-    case 2: return LV_SYMBOL_RIGHT;         // Turn right
-    case 3: return LV_SYMBOL_LEFT;          // Bear / keep left
-    case 4: return LV_SYMBOL_RIGHT;         // Bear / keep right
-    case 5: return LV_SYMBOL_REFRESH;       // U-turn
-    case 6: return LV_SYMBOL_LOOP;          // Roundabout
-    case 7: return LV_SYMBOL_OK;            // Arrive / destination
-    default: return LV_SYMBOL_UP;           // Straight ahead
+    case 1: return &ui_img_ic_turn_left_png;          // Turn left
+    case 2: return &ui_img_ic_turn_right_png;         // Turn right
+    case 3: return &ui_img_ic_turn_slight_left_png;   // Bear / keep left
+    case 4: return &ui_img_ic_turn_slight_right_png;  // Bear / keep right
+    case 5: return &ui_img_ic_turn_u_turn_counterclockwise_png; // U-turn
+    case 6: return &ui_img_ic_roundabout_clockwise_png;         // Roundabout
+    case 7: return &ui_img_ic_destination_png;        // Arrive / destination
+    default: return &ui_img_ic_straight_png;          // Straight ahead
   }
 }
 
@@ -124,13 +133,23 @@ void ui_init() {
   lv_obj_set_style_arc_color(arc_progress, lv_color_white(), LV_PART_INDICATOR);
   lv_obj_clear_flag(arc_progress, LV_OBJ_FLAG_CLICKABLE);
 
-  // Direction icon — large LVGL symbol centred in upper area
-  lbl_maneuver = lv_label_create(scr_nav);
-  lv_obj_set_style_text_font(lbl_maneuver, &lv_font_montserrat_48, 0);
-  lv_obj_set_style_text_align(lbl_maneuver, LV_TEXT_ALIGN_CENTER, 0);
-  lv_label_set_text(lbl_maneuver, LV_SYMBOL_UP);
-  lv_obj_set_style_text_color(lbl_maneuver, lv_color_white(), 0);
-  lv_obj_align(lbl_maneuver, LV_ALIGN_CENTER, 0, -45);
+  // Direction icon — downloaded PNG mapped to lv_img
+  img_maneuver = lv_img_create(scr_nav);
+  lv_img_set_src(img_maneuver, &ui_img_ic_straight_png);
+  // Scale down the 192x192 icons by dividing zoom by 2. (256/2 = 128)
+  lv_img_set_zoom(img_maneuver, 128);
+  // The icons are black. Recolor them white so they contrast with the black background.
+  lv_obj_set_style_img_recolor(img_maneuver, lv_color_white(), 0);
+  lv_obj_set_style_img_recolor_opa(img_maneuver, LV_OPA_COVER, 0);
+  lv_obj_align(img_maneuver, LV_ALIGN_CENTER, 0, -45);
+
+  // Roundabout exit number (placed to the right of the image)
+  lbl_exit_number = lv_label_create(scr_nav);
+  lv_obj_set_style_text_font(lbl_exit_number, &lv_font_montserrat_32, 0);
+  lv_label_set_text(lbl_exit_number, "");
+  lv_obj_set_style_text_color(lbl_exit_number, lv_color_white(), 0);
+  // Align it to the right of the center of the maneuver image (50px right)
+  lv_obj_align_to(lbl_exit_number, img_maneuver, LV_ALIGN_CENTER, 50, 0);
 
   // Distance — directly below the icon
   lbl_distance_nav = lv_label_create(scr_nav);
@@ -211,7 +230,7 @@ void ui_show_distance()   { /* removed screen, falls through to nav */ }
 // ---------------------------------------------------------------------------
 // Main navigation update — updates all screen labels
 // ---------------------------------------------------------------------------
-void ui_show_navigation(int maneuverId, const char *distance,
+void ui_show_navigation(int maneuverId, int exitNumber, const char *stepDistance, const char *eta,
                         const char *street, const char *currentTime,
                         int progressPercent) {
 
@@ -219,20 +238,26 @@ void ui_show_navigation(int maneuverId, const char *distance,
   if (currentTime && strlen(currentTime) > 0)
     lv_label_set_text(lbl_clock, currentTime);
 
-  // ── Arrival: extract ETA from distance string (e.g. "Ankomst 13:32") ──────
-  const char *colon = (distance) ? strchr(distance, ':') : nullptr;
-  if (colon && (colon - distance) >= 2) {
-    char etaBuf[6] = {0};
-    snprintf(etaBuf, sizeof(etaBuf), "%.5s", colon - 2);
-    lv_label_set_text(lbl_arrival_time, etaBuf);
+  // ── Arrival screen ─────────────────────────────────────────────────────────
+  if (eta && eta[0] != '\0') {
+    lv_label_set_text(lbl_arrival_time, eta);
   } else {
     lv_label_set_text(lbl_arrival_time, currentTime ? currentTime : "--:--");
   }
   lv_label_set_text(lbl_arrival_street, street ? street : "");
 
   // ── Navigation screen ──────────────────────────────────────────────────────
-  lv_label_set_text(lbl_maneuver, maneuverId_to_symbol(maneuverId));
-  lv_label_set_text(lbl_distance_nav, distance ? distance : "---");
+  lv_img_set_src(img_maneuver, maneuverId_to_image(maneuverId));
+  
+  if (maneuverId == 6 && exitNumber > 0) { // Roundabout with specific exit
+      lv_label_set_text_fmt(lbl_exit_number, "%d", exitNumber);
+      // Move to foreground to ensure it draws on top of the image
+      lv_obj_move_foreground(lbl_exit_number);
+  } else {
+      lv_label_set_text(lbl_exit_number, "");
+  }
+
+  lv_label_set_text(lbl_distance_nav, stepDistance ? stepDistance : "---");
   lv_label_set_text(lbl_street, street ? street : "");
   lv_arc_set_value(arc_progress, progressPercent);
 
